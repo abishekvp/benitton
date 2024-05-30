@@ -9,3 +9,7 @@ git push -u origin main
 
 git init
 git remote add origin https://github.com/blissinfotech/benitton.git
+
+git branch main
+git checkout main
+git pull origin main
