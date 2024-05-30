@@ -1,0 +1,44 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | Create Category{% endblock title %}
+
+{% block content %}
+<div class="enquiry-form">
+    <style>
+      .enquiry-form{
+        width: 50%;
+        margin: 5% 25% 5% 25%;
+      }
+    </style>
+      <div class="flex items-center gap-2">
+          <div class="flex-grow border-4 border-t"></div>
+          <h2 class="text-blue text-4xl">Edit Sub Category</h2>
+          <div class="flex-grow border-4 border-t"></div>
+      </div>
+      <div>
+          <form method="post" class="bg-gray-100 rounded-md p-2 md:p-6  flex flex-col gap-4" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if message %}
+            <p id="form-alert-message" style="color:red;text-align:center">{{message}}</p>
+            {% endif %}
+            <div class="flex items-center gap-4">
+              <select name="main_category" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">
+                  {% for category in main_categories %}
+                  <option value="{{category.name}}">{{category.name}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div class="flex items-center gap-4">
+                <input type="text" name="name" value="{{category.name}}" placeholder="Category Name" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            </div>
+            <div class="flex items-center gap-4">
+                <input type="text" name="description" value="{{category.description}}" placeholder="Category Description" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            </div>
+            <div class="flex items-center gap-4">
+                <input style="padding-top: 5px;" type="file" name="image" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            </div>
+            <input type="submit" class="bg-darkblue text-white rounded-md p-2 w-full self-center hover:bg-gray-900" value="Update">
+            <a href="{% url 'admin-delete-sub-category' category.name %}" class="bg-darkblue text-center text-white rounded-md p-2 w-full self-center hover:bg-gray-900">Delete</a>
+          </form>
+    </div>
+</div>
+{% endblock %}

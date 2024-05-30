@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+{% block nav %}
+<a class="nav-item nav-link" href="/user-admin/home">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Requests</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/user-admin/clients">Clients</a>
+        <a class="dropdown-item" href="/user-admin/enquiries">Enquiries</a>
+        <a class="dropdown-item" href="/user-admin/plumber-requests">Plumber Requests</a>
+    </div>
+</div>
+<a class="nav-item nav-link" href="/user-admin/main-category">Category</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Product</a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="/user-admin/create-product">Create Product</a>
+        <a class="dropdown-item" href="/user-admin/view-products">View Products</a>
+        <a class="dropdown-item" href="/user-admin/trending-products">Trending Products</a>
+        <a class="dropdown-item" href="/user-admin/gallery-products">Gallery Products</a>
+    </div>
+</div>
+<a class="nav-item nav-link" href="{% url 'user-admin-profile' %}">Profile</a>
+<div class="navbar-nav">
+    <a href="/signout" class="nav-item nav-link">SignOut</a>
+</div>
+{% endblock %}
+{% block base %}
+<section>
+    {% block content %}
+    {% endblock %}
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'per_user/index.html' %}
+{% block title %}User | Product{% endblock title %}
+
+{% block content %}
+<section class="products">
+    {% for product in products %}
+    <div class="product">
+        <div class="product-image">
+            <img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product Image">
+        </div>
+        <div class="product-details">
+            <h2>{{ product.pro_name }}</h2>
+            <p class="description">{{ product.pro_description }}</p>
+            <p class="price">Rs: <span>{{ product.pro_price }}.00/.</span></p>
+            <p class="code">Code: {{product.pro_code}}</p>
+            <p class="range"><span>Range: </span>{{product.pro_range}}</p>
+            <p>Features</p>
+            <ul>
+                {% for feature in product.pro_features %}
+                <li class="feature">{{feature}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

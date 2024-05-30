@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}BENITTON | User{% endblock title %}
+{% block nav %}
+<a class="nav-item nav-link" href="/guser/home">Home</a>
+<a class="nav-item nav-link" href="/guser/main-category">Category</a>
+<a class="nav-item nav-link" href="/guser/view-products">View Products</a>
+<div class="navbar-nav">
+    <a href="/signin" class="nav-item nav-link">SignIn</a>
+</div>
+{% endblock %}
+{% block base %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}

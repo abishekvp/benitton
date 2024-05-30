@@ -1,0 +1,32 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | View Product{% endblock title %}
+{% block content %}
+<section class="view-products">
+    <section class="section-products">
+        <section class="mx-2 md:mx-12">
+            <div class="flex flex-col md:flex-row gap-4 mt-4">
+                <div class="w-full" >
+                    <div class="total-view-products flex flex-col md:flex-row md:flex-wrap gap-4 mt-12 ml-0 md:ml-24">
+                        {% for product in products %}
+                        <div class="bg-white rounded-lg flex flex-col gap-2 p-4 md:p-12">
+                            <div class="w-64 md:w-72 h-44">
+                                <img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="search" class="w-full h-full" />
+                            </div>
+                            <div class="flex justify-between gap-2">
+                                <h2 class="font-semibold text-2xl">{{ product.pro_name }}</h2>
+                            </div>
+                            <h2 class="text-lg">CODE: {{product.pro_code}}</h2>   
+                            <div class="flex justify-between gap-4">
+                                <a href="{% url 'admin-product-detail' product.product_id %}">
+                                    <button class="rounded-lg bg-darkblue text-white w-40 h-10 cursor-pointer">View Products</button>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</section>
+{% endblock %}

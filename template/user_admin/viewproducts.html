@@ -1,0 +1,67 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | View Product{% endblock title %}
+{% block content %}
+
+<section>
+    <div class="product-view">
+        <h1>Products</h1>
+        <div class="filter">
+            {% for category in main_categories %}
+            <a href="{% url 'admin-products' category.name %}"><p>{{category.name}}</p></a>
+            {% endfor %}
+        </div>
+        <div class="total-products">
+            {% for product in products %}
+            <a class="product" href="{% url 'admin-product-detail' product.product_id %}">
+                <img src="data:image/jpeg;base64,{{product.pro_image}}" alt="product-image">
+                <div class="product-detail">
+                    <p>{{product.pro_name}}</p>
+                    <p>{{product.pro_code}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <style>
+        .product-view{
+            text-align: center;
+            padding-top: 100px;
+            background-color: rgb(231, 231, 231);
+        }
+        .total-products{
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: auto;
+            justify-content: space-around;
+            text-align: center;
+            align-items: center;
+            width: 100%;
+            margin: 2% 0;
+        }
+        .product{
+            width: 300px;
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 10px 10px 0 0;
+            text-decoration: none;
+            background: snow;
+        }
+        .product:hover{
+            text-decoration: none;
+            box-shadow: 0 0 5px 5px rgb(205, 205, 205);
+            border-radius: 10px 10px 10px 10px;
+        }
+        .product img{
+            z-index: 8;
+            border-radius: 10px 10px 0 0;
+            width: 300px;
+            height: 300px;
+        }
+        .product-detail{
+            border-radius: 0 0 10px 10px;
+            display: grid;
+            bottom: 0;
+        }
+    </style>
+</section>
+{% endblock %}

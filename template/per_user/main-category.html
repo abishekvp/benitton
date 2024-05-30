@@ -1,0 +1,38 @@
+{% extends 'per_user/index.html' %}
+{% load static %}
+{% block title %}User | Product{% endblock title %}
+{% block content %}
+<section>
+    <div class="home-section" style="background-image: url('../static/img/background.png');background-repeat: no-repeat;background-size: cover;">
+        <div class="home-content">
+            <div class="home-title">
+                <h1>Complete Bath Solutions</h1>
+            </div>
+            <div class="home-subtitle">
+               <p> Indulge in Luxury: Discover Your Perfect <span style="text-transform: uppercase;">{{category.name}}</span> Fittings Today!</p>
+            </div>
+        </div>
+    </div>
+    <h1 class="header-title">Main Category</h1>
+    <div class="container">
+        <div class="card-container">
+            {% for category in main_categories %}
+            <a class="card" href="{% url 'user-sub-category' category.name %}">
+                <img src="data:image/jpeg;base64,{{ category.image }}" alt="Background-Image">
+                <div class="label">{{category.name}}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% if trending_products %}
+    <div class="image-gallery">
+        <h1>Trending Products</h1>
+        <div class="gallery">
+            {% for product in trending_products %}
+            <a href="{% url 'user-product-detail' product.pro_code %}"><img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product" style="pointer-events: none;" ></a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

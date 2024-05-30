@@ -1,0 +1,36 @@
+{% extends 'plumber/index.html' %}
+{% block title %}Plumber | Profile{% endblock title %}
+
+{% block content %}
+<section>
+    <div style="width: 50%;margin:10% 25% 5% 25%" class="bg-gray-100 rounded-md p-2 md:p-6  flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+            <div class="flex-grow border-4 border-t"></div>
+            <h2 class="text-blue text-4xl">Profile</h2>
+            <div class="flex-grow border-4 border-t"></div>
+        </div>
+        {% csrf_token %}
+        {% if message %}
+        <p id="form-alert-message" style="color:red;text-align:center">{{message}}</p>
+        {% endif %}
+        <div class="flex items-center gap-4">
+            <label style="padding-top: 7px;" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">Username: {{user.username}}</label>
+        </div>
+        <div class="flex items-center gap-4">
+            <label style="padding-top: 7px;" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">First Name: {{user.first_name}}</label>
+        </div>
+        <div class="flex items-center gap-4">
+            <label style="padding-top: 7px;" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">Last Name: {{user.last_name}}</label>
+        </div>
+        <div class="flex items-center gap-4">
+            <label style="padding-top: 7px;" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">Email: {{user.email}}</label>
+        </div>
+        <div class="flex items-center gap-4">
+            <label style="padding-top: 7px;" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">Role: {{role}}</label>
+        </div>
+        <a href="{% url 'plumber-edit-profile' %}" style="text-align: right;">
+            <button class="w-44 text-center text-white bg-darkblue h-10 rounded-md">Edit</button>
+        </a>
+    </div>
+</section>
+{% endblock %}

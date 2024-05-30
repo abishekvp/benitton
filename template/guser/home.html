@@ -1,0 +1,328 @@
+{% extends 'guser/index.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<style>
+  #product-name {
+    font-size: 35px;
+  }
+  #product-description {
+    font-weight: 400;
+  }
+  .product-container {
+    margin: 5% 15%;
+  }
+  #product-code {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-stretch: expanded;
+  }
+  .product-details ul {
+    margin-left: 10%;
+    list-style: decimal;
+  }
+  .product-details ul li {
+    font-size: 18px;
+  }
+</style>
+<!-- <div class="home-section">
+  <img src="{% static 'img/background.png' %}" alt="" />
+  <div class="home-content">
+    <div class="home-title">Complete Interiors</div>
+    <div class="home-subtitle">
+      Indulge in Luxury: Discover Your Perfect Fittings Today!
+    </div>
+  </div>
+</div> -->
+<!-- Carousel -->
+<div id="carouselExampleFade" class="carousel slide carousel-fade homeimage" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/background.png' %}" class="d-block w-100" alt="Background Image"style="pointer-events: none;" >
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/background.png' %}" class="d-block w-100" alt="Background Image"style="pointer-events: none;" >
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/background.png' %}" class="d-block w-100" alt="Background Image"style="pointer-events: none;" >
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<section class="animate split-section">
+  <div class="right-split">
+    <img src="{% static 'img/lefthome.png' %}" alt="product" />
+  </div>
+  <div class="left-split">
+    <h1>Premium Range of Faucets</h1>
+    <hr />
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+    <p></p>
+    <div class="feature">
+      <img class="img1" src="{% static 'img/pvd coat.png'%}" alt="Product" />
+      <img src="{% static 'img/rstfre.png'%}" alt="Product" />
+      <img src="{% static 'img/esy to cln.png'%}" alt="Product" />
+    </div>
+    <a href="sub-category/faucets%20/"><button class="explorebtn">Explore</button></a>
+  </div>
+</section>
+
+<section>
+  <div class=" animate productheader">
+    <div>
+      <hr class="line" />
+      <h1>Our Products</h1>
+      <hr class="line" />
+    </div>
+    <p>
+      Our products are designed to make your life easier and more comfortable.
+      We offer a wide range of products that are perfect for any home.Our
+      products are designed to make your life easier and more comfortable. We
+      offer a wide range of products that are perfect for any home.Our products
+      are designed to make your life easier and more comfortable. We offer a
+      wide range of products that are perfect for any home.
+    </p>
+  </div>
+  <div class="container">
+    <div class="card-container">
+        {% for category in main_categories %}
+        <a class="card" href="{% url 'guser-sub-category' category.name %}">
+            <img src="data:image/jpeg;base64,{{ category.image }}" alt="Background-Image">
+            <div class="label">{{category.name}}</div>
+        </a>
+        {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="split-section2">
+  <div class="left-split2">
+    <h1>Why Choose Us</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+    <p></p>
+    <div class="whydivp">
+      <div class="whydiv1">
+        <img src="{% static 'img/ok.png' %}" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit consequat.
+        </p>
+        <p></p>
+      </div>
+
+      <div class="whydiv2">
+        <img src="{% static 'img/ok.png' %}" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit consequat.
+        </p>
+        <p></p>
+      </div>
+    </div>
+    <div class="whydivp">
+      <div class="whydiv1">
+        <img src="{% static 'img/ok.png' %}" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit consequat.
+        </p>
+        <p></p>
+      </div>
+
+      <div class="whydiv2">
+        <img src="{% static 'img/ok.png' %}" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit consequat.
+        </p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="right-split2">
+    <img src="{% static 'img/rightimghome.png' %}" style="pointer-events: none;" alt="Background-Image"  />
+  </div>
+</section>
+
+{% if trending_products_one %}
+<div class=" animate image-gallery">
+  <h1>Trending Products</h1>
+  <div class="gallery">
+    {% for product in trending_products_one %}
+    <a href="{% url 'guser-product-detail' product.product_id %}"
+      ><img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product" style="pointer-events: none;" 
+    /></a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+<div class="animate gallery">
+  <h1>Gallery</h1>
+  <div class="gallery-products">
+    {% for product in gallery_products %}
+    <a href="{% url 'guser-product-detail' product.product_id %}">
+      <img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product" />
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<section class=" animate split-section2 ">
+  <div class="right-split2">
+    <img src="{% static 'img/leftgirlimg.png' %}" />
+  </div>
+  <div class="left-split3">
+    <h1>
+      About Us
+      <hr />
+    </h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+      ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.
+    </p>
+    <h3>The Modern art of Luxury</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor.
+    </p>
+  </div>
+</section>
+
+<section style="margin-top: -10%" class="animate split-section2">
+  <div class="left-split2 unlock">
+    <h1>Unlock the world of Possibilities with benniton Bathware</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+    <button class="raiseADis">Raise A Dispute</button>
+    <button class="connectWU">Connect with us</button>
+  </div>
+  <div class="right-split2">
+    <img src="{% static 'img/rightimghome.png' %}"  alt="Background" style="pointer-events: none;" />
+  </div>
+</section>
+
+
+<div class="flex animate flex-col gap-4 items-center md:flex-row justify-center md:px-36 ">
+  <div>
+    
+    <img src="{% static 'img/lefthome.png' %}" alt="Background-Image" class="w-full h-full " style="pointer-events: none;" />
+  </div>
+   
+    <div class="w-3/4 enqcontainer">
+      <div class="flex items-center gap-2">
+        <div class="flex-grow border-4 border-t"></div>
+        <h2 class="text-blue text-4xl">Raise a Plumber</h2>
+        <div class="flex-grow border-4 border-t"></div>
+      </div>
+      <div class="form">
+        <form
+          method="post"
+          class="bg-gray-100 rounded-md p-2 md:p-6 flex flex-col gap-4"
+          enctype="multipart/form-data">
+          {% csrf_token %} {% if message %}
+          <p id="form-alert-message" style="color: red; text-align: center">
+            {{message}}
+          </p>
+          {% endif %}
+          <div class="flex items-center gap-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4"
+              required />
+          </div>
+          <div class="flex items-center gap-4">
+            <input
+              type="tel"
+              name="contact"
+              placeholder="Contact"
+              class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4"
+              required />
+          </div>
+          <div class="flex items-start gap-4">
+            <textarea
+              name="address"
+              placeholder="Address"
+              class="bg-gray-300 w-full text-black h-20 rounded-lg pl-4"
+              required></textarea>
+          </div>
+          <div class="flex items-center gap-4">
+            <label for="product_image"
+              >Defective Product? Upload Image (Optional):
+              <input
+                type="file"
+                name="product_image"
+                class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            </label>
+          </div>
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              name="plumber_visit"
+              class="bg-gray-300 text-black h-7 mar" />
+            <label class ="-ml--2" for="visit"> I want Plumber to visit my home </label>
+          </div>
+          <button
+            class="bg-darkblue text-white rounded-md p-2 w-full self-center hover:bg-gray-900">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+
+</div>
+<style>
+  .gallery {
+    width: 80%;
+    margin: 5% 10%;
+  }
+  .gallery h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 3%;
+  }
+  .gallery-products {
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .gallery img {
+    max-width: 250px;
+    height: auto;
+    margin: 10px;
+  }
+</style>
+
+{% endblock %}

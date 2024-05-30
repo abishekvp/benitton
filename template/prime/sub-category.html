@@ -1,0 +1,45 @@
+{% extends 'prime/index.html' %}
+{% load static %}
+{% block title %}Prime | Product{% endblock title %}
+
+{% block content %}
+<style>
+    .home-section{
+        background-color: rgb(213, 213, 213);
+    }
+</style>
+<section>
+    <div class="home-section">
+        <img src="data:image/jpeg;base64,{{ main_category.image }}" alt="">
+        <div class="home-content">
+            <div class="home-title" style="text-transform: uppercase;color:black">
+                Complete {{main_category.name}} Solutions
+            </div>
+            <div class="home-subtitle" style="color:black">
+                {{main_category.description}}
+            </div>
+        </div>
+    </div>
+    <h1 class="header-title" style="text-transform: uppercase;">{{main_category.name}}</h1>
+    <div class="container">
+        <div class="card-container">
+            {% for category in sub_categories %}
+            <div class="card">
+                <a href="{% url 'prime-products' category.name %}">
+                    <img src="data:image/jpeg;base64,{{ category.image }}" alt="Image 1">\
+                    <div class="label">{{category.name}}</div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="image-gallery">
+        <h1>Related Products</h1>
+        <div class="gallery">
+            {% for product in related_products %}
+            <a href="{% url 'prime-product-detail' product.product_id %}"><img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Image 1"></a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

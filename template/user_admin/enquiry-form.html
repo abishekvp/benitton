@@ -1,0 +1,68 @@
+{% extends 'user_admin/index.html' %}
+{% load static %}
+{% block content %}
+<section class="flex flex-col md:flex-row md:flex-wrap gap-4 mt-20 mx-2" >
+    <div class="w-full md:w-90 rounded-lg bg-lightblue px-8 py-12 flex flex-col gap-5 " >
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src ="{% static 'img/Vector (1).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Username :</h2>
+            <h2 class="text-lg">{{ enquiry.user_name }}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src="{% static 'img/Vector (3).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">User Contact:</h2>
+            <h2 class="text-lg">{{ enquiry.user_contact }}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src="{% static 'img/Vector (3).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Product Name:</h2>
+            <h2 class="text-lg">{{enquiry.product_name}}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src="{% static 'img/Vector (5).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Product Code:</h2>
+            <h2 class="text-lg">{{enquiry.product_code}}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src="{% static 'img/Vector (4).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Message : </h2>
+            <h2 class="text-lg">{{ enquiry.user_message }}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src ="{% static 'img/Vector (1).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Recieved On : </h2>
+            <h2 class="text-lg">{{ enquiry.recieved_on }}</h2>
+        </div>
+        <div class="flex gap-4 font-semibold">
+            <div class="w-6 h-6">
+                <img src ="{% static 'img/Vector (2).svg' %}" alt="product" class="w-full h-full" />
+            </div>
+            <h2 class="text-lg">Address -</h2>
+            <h2 class="text-lg">City : {{ enquiry.user_city }}</h2>
+            <h2 class="text-lg">State : {{ enquiry.user_state }}</h2>
+        </div>
+        <div class="flex items-center gap-4 font-semibold">
+            
+            <a href="{% url 'admin-delete-enquiry' enquiry.request_id %}"><button class="w-44 text-center text-white bg-darkblue h-10 rounded-md">Delete Enquiry</button></a>
+            <form method="post" style="display: flex;">
+                {% csrf_token %}
+                <input type="text" name="note" id="note" style="margin-right: 20px;" placeholder="Note" value="{{enquiry.note}}" class="w-200 text-center text-white bg-darkblue h-10 rounded-md">
+                <input type="submit" value="Save" class="w-20 text-center text-white bg-darkblue h-10 rounded-md">
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

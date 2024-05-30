@@ -1,0 +1,107 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | Clients{% endblock title %}
+{% block content %}
+<style>
+    h1{
+        font-weight: 800;
+        font-size: 25px;
+        line-height: 50%;
+        margin: 5% 0 -3% 0;
+        text-align: center;
+    }
+    table{
+        width: 70%;
+        border-collapse: collapse;
+        margin: 5% 15%;
+    }
+    table tbody{
+        width: 100%;
+    }
+    table thead tr th{
+        text-align: center;
+        font-weight: 900;
+        font-size: 20px;
+        color: snow;
+        background-color: #0b1c45;
+        border: 2px solid black;
+    }
+    table tbody tr td{
+        text-align: left;
+        text-indent: 20px;
+        font-size: 18px;
+        color: #0b1c45;
+        border: 1px solid black;
+    }
+    #client-action{
+        display: flex;
+        text-indent: 0;
+        text-align: center;
+        justify-content: space-around;
+    }
+    #client-action button{
+        width: 150px;
+        margin: 2% ;
+        font-size: 15px;
+        font-weight: 800;
+        color: snow;
+        background-color: #0b1c45;
+    }
+</style>
+    <h1>Waiting Clients List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Approval</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in inactive_clients %}
+            <tr>
+                <td>{{client.username}}</td>
+                <td>{{client.email}}</td>
+                <td id="client-action">
+                    <a href="{% url 'approve-user' client.email %}">
+                        <button class="text-center text-white bg-darkblue h-10 rounded-md">Approve</button>
+                    </a>
+                    <a href="{% url 'remove-user' client.email %}">
+                        <button class="text-center text-white bg-darkblue h-10 rounded-md">Remove</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h1>Approved Clients List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Approval</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in active_clients %}
+            <tr>
+                <td>{{client.username}}</td>
+                <td>{{client.email}}</td>
+                <td id="client-action">
+                    <a href="{% url 'revoke-user' client.email %}">
+                        <button class="text-center text-white bg-darkblue h-10 rounded-md">Revoke</button>
+                    </a>
+                    <a href="{% url 'remove-user' client.email %}">
+                        <button class="text-center text-white bg-darkblue h-10 rounded-md">Remove</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            <script>
+                function remove_client(id){
+                    alert(id);
+                };
+            </script>
+        </tbody>
+    </table>
+{% endblock %}>

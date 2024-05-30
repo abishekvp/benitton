@@ -1,0 +1,57 @@
+{% extends 'user_admin/index.html' %}
+{% load static %}
+{% block title %}User | Category{% endblock title %}
+
+{% block content %}
+<style>
+    .home-section{
+        background-color: rgb(213, 213, 213);
+    }
+</style>
+<section>
+    <div class="home-section">
+        <img src="data:image/jpeg;base64,{{ main_category.image }}" alt="">
+        <div class="home-content">
+            <div class="home-title" style="text-transform: uppercase;color:black">
+                Complete {{main_category.name}} Solutions
+            </div>
+            <div class="home-subtitle" style="color:black">
+                {{main_category.description}}
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+    <style>
+        .nav-link-create{
+            width: 10%;
+            margin: 5% 42.7%;
+        }
+        *{
+            text-transform: uppercase;
+        }
+    </style>
+    <a class="nav-link-create" href="/user-admin/create-sub-category">Create sub Category</a>
+    <h1 class="header-title" style="text-transform: uppercase;">{{main_category.name}}</h1>
+    <div class="container">
+        <div class="card-container">
+            {% for category in sub_categories %}
+            <div class="card">
+                <a class="edit-link" href="{% url 'admin-edit-sub-category' category.name %}">Edit</a>
+                <a href="{% url 'admin-products' category.name %}">
+                    <img src="data:image/jpeg;base64,{{ category.image }}" alt="Image 1">\
+                    <div class="label">{{category.name}}</div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="image-gallery">
+        <h1>Related Products</h1>
+        <div class="gallery">
+            {% for product in related_products %}
+            <a href="{% url 'admin-product-detail' product.product_id %}"><img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Image 1"></a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

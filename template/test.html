@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Logo</a>
+        <ul class="nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#about">Works</a></li>
+          <li><a href="#about">Contact</a></li>
+        </ul>
+      </header>
+      
+      <section class="home-section">
+        <img src="https://raw.githubusercontent.com/Ryoley/moonlight-parallax/main/assets/images/stars.png" alt="Stars overlay" id="stars">
+        <img src="https://raw.githubusercontent.com/Ryoley/moonlight-parallax/main/assets/images/moon.png" alt="Moon" id="moon">
+        <img src="https://raw.githubusercontent.com/Ryoley/moonlight-parallax/main/assets/images/mountains_back.png" alt="Mountains back" id="mountains_back">
+        <a href="#about" id="btn-letsgo">Let's go!</a>
+        <img src="https://raw.githubusercontent.com/Ryoley/moonlight-parallax/main/assets/images/mountains_front.png" alt="Mountains front" id="mountains_front">
+      </section>
+      <div style="margin: 5%;">
+          <p style="text-align: justify;">
+            If these criteria are not met when creating a website based on parallax scrolling, the end user may be
+            faced with major problems. In the worst case, the website would be unusable, the information impossible
+            to consult, and the website would not reach its goal. Too many technical difficulties could frustrate
+            the users and also damage the image of the site. If these criteria are not met when creating a website based on parallax scrolling, the end user may be
+            faced with major problems. In the worst case, the website would be unusable, the information impossible
+            to consult, and the website would not reach its goal. Too many technical difficulties could frustrate
+            the users and also damage the image of the site. If these criteria are not met when creating a website based on parallax scrolling, the end user may be
+            faced with major problems. In the worst case, the website would be unusable, the information impossible
+            to consult, and the website would not reach its goal. Too many technical difficulties could frustrate
+            the users and also damage the image of the site. If these criteria are not met when creating a website based on parallax scrolling, the end user may be
+            faced with major problems. In the worst case, the website would be unusable, the information impossible
+            to consult, and the website would not reach its goal. Too many technical difficulties could frustrate
+            the users and also damage the image of the site. If these criteria are not met when creating a website based on parallax scrolling, the end user may be
+            faced with major problems. In the worst case, the website would be unusable, the information impossible
+            to consult, and the website would not reach its goal. Too many technical difficulties could frustrate
+            the users and also damage the image of the site.
+            </p>
+        </div>
+        <script>
+            let stars = document.getElementById("stars");
+            let moon = document.getElementById("moon");
+            let mountains_back = document.getElementById("mountains_back");
+            let mountains_front = document.getElementById("mountains_front");
+            let btn = document.getElementById("btn-letsgo");
+            let header = document.querySelector("header");
+
+            window.addEventListener("scroll", function () {
+            let value = window.scrollY;
+            stars.style.left = value * 0.25 + "px";
+            moon.style.top = value * 1.05 + "px";
+            mountains_back.style.top = value * 0.5 + "px";
+            mountains_front.style.top = value * 0 + "px";
+            btn.style.marginTop = value * 1 + "px";
+            header.style.top = value * 0.5 + "px";
+            });
+      </script>
+</body>
+</html>

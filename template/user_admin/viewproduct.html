@@ -1,0 +1,44 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | View Product{% endblock title %}
+{% block content %}
+<section class="view-products">
+    <h1>Product List</h1>
+    <div class="all-products">
+        {% for product in products %}
+        <div class="product">
+            <div class="product-image">
+                <img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product Image">
+            </div>
+            <div class="product-details">
+                <h2>{{ product.pro_name }}</h2>
+                <p class="description">{{ product.pro_description }}</p>
+                <p class="price">Actual Price Rs: <span>{{ product.pro_price }}.00/.</span></p>
+                <p class="price">User Price Rs: <span>{{ product.pro_price_per_user }}.00/.</span></p>
+                <p class="price">Prime Price Rs: <span>{{ product.pro_price_prime }}.00/.</span></p>
+                <p class="price">Plumber Price Rs: <span>{{ product.pro_price_plumber }}.00/.</span></p>
+                <p class="code">Code: {{product.pro_code}}</p>
+                <p class="range"><span>Range: </span>{{product.pro_range}}</p>
+                <p>Features</p>
+                <ul>
+                    {% for feature in product.pro_features %}
+                    <li class="feature">{{feature}}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'edit-product' product.pro_code %}"><button>Edit</button></a>
+                <button id="{{product.pro_code}}" onclick="delete_product(this.id)">Delete</button>
+                <script>
+                    function delete_product(id) {
+                        var id = id.toString();
+                        id = "delete-product/"+id+"/";
+                        var confirmDelete = confirm('Are you sure you want to delete this product?');
+                        if (confirmDelete) {
+                            window.location.href = id;
+                        }
+                    };
+                </script>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

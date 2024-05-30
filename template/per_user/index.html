@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}BENITTON | User
+{% endblock title %}
+{% block nav %}
+
+<a class="nav-item nav-link" href="/user/home">Home</a>
+<a class="nav-item nav-link" href="/user/main-category">Category</a>
+<a class="nav-item nav-link" href="/user/view-products">Products</a>
+<a class="nav-item nav-link" href="{% url 'per_user-profile' %}">Profile</a>
+<div class="navbar-nav">
+    <a href="/signout" class="nav-item nav-link">SignOut</a>
+</div>
+{% endblock %} 
+{% block base %} 
+{% block content %} 
+{% endblock %} 
+{% endblock %}

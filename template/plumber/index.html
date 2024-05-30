@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}BENITTON | Plumber{% endblock title %}
+{% block nav %}
+<a class="nav-item nav-link" href="/plumber/home">Home</a>
+<a class="nav-item nav-link" href="/plumber/main-category">Category</a>
+<a class="nav-item nav-link" href="/plumber/view-products">View Products</a>
+<a class="nav-item nav-link" href="{% url 'plumber-profile' %}">Profile</a>
+<div class="navbar-nav">
+    <a href="/signout" class="nav-item nav-link">SignOut</a>
+</div>
+{% endblock %}
+{% block base %}
+{% block content %}
+{% endblock %}
+{% endblock %}

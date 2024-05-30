@@ -1,0 +1,90 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | Edit Product{% endblock title %}
+
+{% block content %}
+<section class="create-product">
+<form method="post" class="bg-gray-100 rounded-md p-2 md:p-6  flex flex-col gap-4" enctype="multipart/form-data">
+    <div class="flex items-center gap-2">
+        <div class="flex-grow border-4 border-t"></div>
+        <h2 class="text-blue text-4xl">Edit Product</h2>
+        <div class="flex-grow border-4 border-t"></div>
+    </div>
+    {% csrf_token %}
+    {% if message %}
+    <p id="form-alert-message" style="color:red;text-align:center">{{message}}</p>
+    {% endif %}
+    <div class="flex items-center gap-4">
+        <img src="data:image/jpeg;base64,{{ product.pro_image }}" style="width: 200px;height:200px;" alt="">
+        <div class="items-center gap-4">
+            <h2 style="padding: 20px 0 10px 0;font-weight:700;">Product Name</h2>
+            <input type="text" name="pro_name" value="{{product.pro_name}}" placeholder="Product Name" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required/>
+            <h2 style="padding: 20px 0 10px 0;font-weight:700;">Product Price</h2>
+            <div class="flex items-center gap-4">
+                <input type="text" name="pro_price" value="{{product.pro_price}}" placeholder="Price" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+                <input type="text" name="pro_price_per_user" value="{{product.pro_price_per_user}}" placeholder="User" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+                <input type="text" name="pro_price_prime" value="{{product.pro_price_prime}}" placeholder="Prime" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+                <input type="text" name="pro_price_plumber" value="{{product.pro_price_plumber}}" placeholder="Plumber" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            </div>
+            <br>
+            <div class="items-center gap-4">
+                <h2 style="padding-bottom:10px;font-weight:700;">Product Description</h2>
+                <textarea name="pro_description" cols="50" rows="3" placeholder="Description" class="bg-gray-300 w-100 text-black rounded-lg pl-2" required>{{product.pro_description}}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center gap-4">
+        <h2 style="padding-bottom:10px;width:24%;font-weight:700;">Select Product Image</h2>
+        <input type="file" style="padding-top: 5px;" name="pro_image" value="{{product.pro_image}}" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4"/>
+    </div>
+    <div class="items-center gap-4">
+        <h2 style="padding-bottom:10px;font-weight:700;">Product Code</h2>
+        <input type="text" name="pro_code" value="{{product.pro_code}}" placeholder="Product Code" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required/>
+    </div>
+    <div class="flex items-center gap-4">
+        <input type="text" name="pro_series" value="{{product.pro_series}}" placeholder="Product Series" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">
+    </div>
+    <div class="items-center gap-4">
+        <h2 style="padding-bottom:10px;font-weight:700;">Product Features</h2>
+        <textarea name="pro_features" cols="50" rows="5" placeholder="Features" class="bg-gray-300 w-100 text-black rounded-lg pl-2">{{product.pro_features}}</textarea>
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="pro_sub_category">Main Category</label>
+        <select type="text" name="pro_main_category" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">
+            {% for category in main_categories %}
+            <option value="{{category.name}}">{{category.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="pro_sub_category">Sub Category</label>
+        <select type="text" name="pro_sub_category" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">
+            {% for category in sub_categories %}
+            <option value="{{category.name}}">{{category.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div style="justify-content: space-around;" class="flex items-center">
+        <label class="checkbox-button">
+            {% if product.trending %}
+            <input type="checkbox" name="pro_trending" checked>
+            {% else %}
+            <input type="checkbox" name="pro_trending">
+            {% endif %}
+            <span class="checkbox-text">Trending</span>
+        </label>
+        <label class="checkbox-button">
+            {% if product.gallery_view %}
+            <input type="checkbox" name="pro_gallery_view" checked>
+            {% else %}
+            <input type="checkbox" name="pro_gallery_view">
+            {% endif %}
+            <span class="checkbox-text">Gallery</span>
+        </label>
+    </div>
+    <div class="flex items-center gap-4">
+        <button type="submit" class="bg-darkblue text-white rounded-md p-2 w-full self-center hover:bg-gray-900">update</button>
+        <a href="/user-admin/delete-product/{{product.product_id}}/" style="text-align: center;" class="bg-darkblue text-white rounded-md p-2 w-full self-center hover:bg-gray-900">Delete</button></a>
+    </div>
+</form>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'user_admin/index.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<section>
+    <div class="view-requests">
+        <h1>Requests</h1>
+        <div class="total-requests">
+            {% for request in requests %}
+            <a class="request" href="{% url 'admin-plumber-request' request.request_id %}">
+                <p>Name : {{request.name}}</p>
+                <p>Contact : {{request.contact}}</p>
+                <p>Address : {{request.address}}</p>
+                {% if request.plumber_visit %}
+                <p>Need Plumber Visit</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <style>
+        .view-requests{
+            text-align: center;
+            background-color: rgb(231, 231, 231);
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .total-requests{
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: auto;
+            justify-content: space-around;
+            width: 100%;
+            text-align: left;
+            margin: 2% 0;
+        }
+        .request{
+            width: 250px;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: snow;
+            font-weight: 700;
+        }
+    </style>
+</section>
+
+{% endblock %}

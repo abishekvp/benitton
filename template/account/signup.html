@@ -1,0 +1,97 @@
+{% extends 'sign.html' %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+{% block sign %}
+<section class="sign">
+  <div class="col-md-6 left">
+    <h1>Modern<br />Interior<br />Design Studio</h1>
+    <img src="{% static 'img/logo.svg' %}" alt="benitton-logo" />
+    <span>@daatstudios</span>
+  </div>
+  <div class="col-md-6 right">
+    <p class="alert-message">{{message}}</p>
+    <div class="right-content">
+      <h1>SignUp</h1>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          Role:<select name="role" class="form-control">
+            <option value="per_user">User</option>
+            <option value="prime">Prime</option>
+            <option value="plumber">Plumber</option>
+          </select>
+          <!-- <input type="radio" name="role" id="per_user" value="per_user">
+                    <input type="radio" name="role" id="plumber" value="plumber">
+                    <input type="radio" name="role" id="Prime" value="prime"> -->
+        </div>
+        <style>
+          select {
+            border: none;
+            font-size: 16px;
+            width: 30%;
+            background: transparent;
+          }
+          select:focus {
+            border: none;
+          }
+          option::selection {
+            border: none;
+          }
+        </style>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required />
+        </div>
+        <div style="display: flex" class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required />
+          <input
+            type="password"
+            class="form-control"
+            name="confirm_password"
+            id="confirm_password"
+            placeholder="Confirm Password"
+            required />
+        </div>
+        <p id="alert-cp"></p>
+        <script>
+          $(document).ready(function () {
+            $("#confirm_password").on("input", function () {
+              if ($("#password").val() === $("#confirm_password").val()) {
+                // Passwords match
+                $("#alert-cp").text("");
+              } else {
+                // Passwords do not match
+                $("#alert-cp")
+                  .text("Password do not match")
+                  .css("color", "red");
+              }
+            });
+          });
+        </script>
+        <input type="submit" value="Submit" />
+        Already have an account? then <a href="signin">SignIn</a>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

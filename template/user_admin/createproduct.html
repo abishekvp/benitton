@@ -1,0 +1,70 @@
+{% extends 'user_admin/index.html' %}
+{% block title %}Admin | Create Product{% endblock title %}
+
+{% block content %}
+<section class="create-product">
+    <form method="post" class="bg-gray-100 rounded-md p-2 md:p-6  flex flex-col gap-4" enctype="multipart/form-data">
+        <div class="flex items-center gap-2">
+            <div class="flex-grow border-4 border-t"></div>
+            <h2 class="text-blue text-4xl">Create Product</h2>
+            <div class="flex-grow border-4 border-t"></div>
+        </div>
+        {% csrf_token %}
+        {% if message %}
+        <p id="form-alert-message" style="color:red;text-align:center">{{message}}</p>
+        {% endif %}
+        <div class="flex items-center gap-4">
+            <input type="text" name="pro_name" placeholder="Product Name" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+        </div>
+        <div class="flex items-center gap-4">
+            <input type="text" name="pro_code" placeholder="Product Code" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+        </div>
+        <div class="flex items-center gap-4">
+            <label for="pro_sub_category">Main Category</label>
+            <select type="text" name="pro_main_category" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+                {% for category in main_categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="flex items-center gap-4">
+            <label for="pro_sub_category">Sub Category</label>
+            <select type="text" name="pro_sub_category" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+                {% for category in sub_categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="flex items-center gap-4">
+            <input type="text" name="pro_series" placeholder="Product Series" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4">
+        </div>
+        <h4 style="line-height: 100%;">Product Price</h4>
+        <div class="flex items-center gap-4">
+            <input type="text" name="pro_price" placeholder="Price" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+            <input type="text" name="pro_price_per_user" placeholder="User" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            <input type="text" name="pro_price_prime" placeholder="Prime" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+            <input type="text" name="pro_price_plumber" placeholder="Plumber" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" />
+        </div>
+        <div class="flex items-center gap-4">
+            <textarea name="pro_description" cols="50" rows="3" placeholder="Description" class="bg-gray-300 w-100 text-black rounded-lg pl-2" required></textarea>
+        </div>
+        <div class="flex items-center gap-4">
+            <input type="file" style="padding-top: 5px;" name="pro_image" class="bg-gray-300 w-full text-black h-10 rounded-lg pl-4" required>
+        </div>
+        <div class="flex items-center gap-4">
+            <textarea name="pro_features" cols="50" rows="5" placeholder="Features" class="bg-gray-300 w-100 text-black rounded-lg pl-2"></textarea>
+        </div>
+        <div style="justify-content: space-around;" class="flex items-center">
+            <label class="checkbox-button">
+                <input type="checkbox" name="pro_trending">
+                <span class="checkbox-text">Trending</span>
+            </label>
+            <label class="checkbox-button">
+                <input type="checkbox" name="pro_gallery_view">
+                <span class="checkbox-text">Gallery</span>
+            </label>
+        </div>
+        <button class="bg-darkblue text-white rounded-md p-2 w-full self-center hover:bg-gray-900">Submit</button>
+    </form>
+</section>
+{% endblock %}

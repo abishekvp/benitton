@@ -1,0 +1,139 @@
+/* Default styles */
+
+body {
+    background: snow;
+    color: #03456F;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+
+.content-main {
+    background-color: #03456F;
+    color: snow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+a {
+    color: #03456F;
+}
+
+.sign {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    background-color: #03456F;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: snow;
+}
+
+.left {
+    background-color: #ABC1F2;
+    display: grid;
+    width: 32%;
+    margin: 5% -2% 5% 5%;
+    text-align: center;
+}
+
+.left h1 {
+    text-align: left;
+    margin: 10% 15%;
+    font-size: 30px;
+}
+
+.left img {
+    width: 40%;
+    margin: 10% 30% -10% 30%;
+}
+
+.right {
+    background-color: snow;
+    color: #03456F;
+    width: 60%;
+    margin: 5% 5% 5% 0;
+    border-radius: 20px 0 0 20px;
+}
+
+.right-content {
+    margin: 10% 0 10% 30%;
+}
+
+.right form {
+    margin: 5% 5%;
+    width: fit-content;
+    text-align: center;
+}
+
+.right form input[type=submit] {
+    background: transparent;
+    border: none;
+    width: 105%;
+    padding: 10px 5px;
+    margin: 20px 0;
+    color: snow;
+    background-color: #03456F;
+}
+
+.right form input {
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding: 10px 5px;
+    border-bottom: 1px solid black;
+    margin: 10px 0;
+    color: #03456F;
+    background-color: transparent;
+}
+
+.alert-message {
+    color: red;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Mobile responsive styles */
+
+@media (max-width: 768px) {
+    .sign {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left {
+        width: 100%;
+        margin: 5% 0;
+    }
+
+    .left h1 {
+        text-align: center;
+        margin: 10% 5%;
+    }
+
+    .left img {
+        width: 60%;
+        margin: 10% 20%;
+    }
+
+    .right {
+        width: 100%;
+        margin: 5% 0;
+        border-radius: 0;
+    }
+
+    .right-content {
+        margin: 10% 5%;
+    }
+}

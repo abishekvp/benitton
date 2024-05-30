@@ -1,0 +1,38 @@
+{% extends 'plumber/index.html' %}
+{% load static %}
+{% block title %}Plumber | Product{% endblock title %}
+{% block content %}
+<section>
+    <div class="home-section" style="background-image: url('../static/img/background.png');">
+        <div class="home-content">
+            <div class="home-title">
+                Complete Bath Solutions
+            </div>
+            <div class="home-subtitle">
+                Indulge in Luxury: Discover Your Perfect <span style="text-transform: uppercase;">{{category.name}}</span> Fittings Today!
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="title">Main Category</h1>
+        <div class="card-container">
+            {% for category in main_categories %}
+            <a class="card" href="{% url 'plumber-sub-category' category.name %}">
+                <img src="data:image/jpeg;base64,{{ category.image }}" alt="Category">
+                <div class="label">{{category.name}}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% if trending_products %}
+    <div class="image-gallery">
+        <h1>Trending Products</h1>
+        <div class="gallery">
+            {% for product in trending_products %}
+            <a href="{% url 'plumber-product-detail' product.pro_code %}"><img src="data:image/jpeg;base64,{{ product.pro_image }}" alt="Product"></a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

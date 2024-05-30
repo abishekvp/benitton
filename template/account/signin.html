@@ -1,0 +1,29 @@
+{% extends 'sign.html' %}
+{% load static %}
+{% block title %}SignIn{% endblock title %}
+{% block sign %}
+<section class="sign">
+    <div class="col-md-6 left">
+        <h1>Modern<br>Bath<br>Design Studio</h1>
+        <img src="{% static 'img/logo.svg' %}" alt="benitton-logo">
+        <span>@daatstudios</span>
+    </div>
+    <div class="col-md-6 right">
+        <p class="alert-message">{{message}}</p>
+        <div class="right-content">
+            <h1>SignIn</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username or Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                <input type="submit" class="btn btn-primary" value="SignIn">
+            </form>
+            <p>Don't have an account? then <a href="signup">SignUp</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
